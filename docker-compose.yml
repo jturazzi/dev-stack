@@ -1,0 +1,106 @@
+version: '3.8'
+services:
+  adminer:
+    environment:
+      TZ : '${TZ:-Europe/Paris}'
+    image: adminer:latest
+    labels:
+      traefik.http.routers.adminer.rule : 'Host(`adminer.${DEV_DOMAIN:-local}`)'
+      traefik.http.routers.adminer.service: 'adminer'
+      traefik.http.services.adminer.loadbalancer.server.port: 8080
+    networks:
+      - dev-stack
+    restart: unless-stopped
+    
+  db:
+    environment:
+      MYSQL_ROOT_PASSWORD: '${MYSQL_ROOT_PASSWORD:-root}'
+      TZ : '${TZ:-Europe/Paris}'
+    image: mysql:latest
+    networks:
+      - dev-stack
+    ports:
+      - 3306:3306
+    restart: unless-stopped
+    volumes:
+      - db:/var/lib/mysql
+
+  mailpit:
+    environment:
+      TZ : '${TZ:-Europe/Paris}'
+    image: axllent/mailpit:latest
+    labels:
+      traefik.http.routers.mailpit.rule : 'Host(`mailpit.${DEV_DOMAIN:-local}`)'
+      traefik.http.routers.mailpit.service: 'mailpit'
+      traefik.http.services.mailpit.loadbalancer.server.port: 8025
+    networks:
+      - dev-stack
+    ports:
+      - 1025:1025
+    restart: unless-stopped
+
+  portainer:
+    environment:
+      TZ : '${TZ:-Europe/Paris}'
+    image: portainer/portainer-ce:latest
+    labels:
+      traefik.http.routers.portainer.rule : 'Host(`portainer.${DEV_DOMAIN:-local}`)'
+      traefik.http.routers.portainer.service: 'portainer'
+      traefik.http.services.portainer.loadbalancer.server.port: 9000
+    networks:
+      - dev-stack
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer:/data
+    restart: unless-stopped
+
+  traefik:
+    environment:
+      TZ : '${TZ:-Europe/Paris}'
+    command:
+      --providers.docker=true
+    image: traefik:latest
+    networks:
+      - dev-stack
+    ports:
+      - 80:80
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    restart: unless-stopped
+
+  watchtower:
+    environment:
+      TZ : '${TZ:-Europe/Paris}'
+      WATCHTOWER_NOTIFICATIONS: email
+      WATCHTOWER_NOTIFICATION_EMAIL_FROM: watchtower@dev
+      WATCHTOWER_NOTIFICATION_EMAIL_TO: watchtower@dev
+      WATCHTOWER_NOTIFICATION_EMAIL_SERVER: mailpit
+      WATCHTOWER_NOTIFICATION_EMAIL_SERVER_PORT: 1025
+      WATCHTOWER_NOTIFICATION_EMAIL_DELAY: 2
+    image: containrrr/watchtower:latest
+    networks:
+      - dev-stack
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: unless-stopped
+  web:
+    environment:
+      TZ : '${TZ:-Europe/Paris}'
+    image: webdevops/php-nginx-dev:8.3-alpine
+    labels:
+      traefik.http.routers.web.rule : 'Host(`${DEV_DOMAIN:-local}`)'
+      traefik.http.routers.web.service: 'web'
+      traefik.http.services.web.loadbalancer.server.port: 80
+    networks:
+      - dev-stack
+    volumes:
+      - ./web:/app
+    restart : unless-stopped
+
+networks:
+  dev-stack:
+    driver: bridge
+
+volumes:
+  db:
+  portainer:
