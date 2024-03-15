@@ -23,6 +23,8 @@ Access services:
 - Portainer: Docker management.
 - Traefik: Reverse proxy.
 
+*Note: DNS configuration is required on your DNS server or in the hosts file to reach the services.*
+
 ## Configuration
 
 1. Copy the `.env.example` file and copy it to `.env`.

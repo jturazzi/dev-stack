@@ -14,6 +14,8 @@ Accédez aux services :
 - Mailpit : [http://mailpit.local](http://mailpit.local)
 - Portainer : [http://portainer.local](http://portainer.local)
 
+*Remarque : La configuration DNS est requise sur votre serveur DNS ou dans le fichier hosts pour atteindre les services.*
+
 ## Services
 
 - Web : PHP-Nginx.
