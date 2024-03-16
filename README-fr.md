@@ -37,6 +37,10 @@ Accédez aux services :
    - `DEV_DOMAIN` : Définissez le domaine pour le développement local (par défaut : local).
 4. Enregistrez le fichier `.env`.
 
+## Contribution
+
+Contributions bienvenues de la communauté. Fork, apportez des modifications, soumettez une pull request.
+
 ## Licence
 
 Ce projet est sous licence [MIT](LICENSE).

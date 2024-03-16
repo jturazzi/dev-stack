@@ -37,6 +37,10 @@ Access services:
     - `DEV_DOMAIN`: Set the domain for local development (default: local).
 4. Save the `.env` file.
 
+## Contribution
+
+We welcome community contributions. Fork, make changes, submit a pull request.
+
 ## License
 
 This project is licensed under the [MIT](LICENSE) License.
