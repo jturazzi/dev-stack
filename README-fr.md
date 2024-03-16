@@ -1,4 +1,5 @@
-<h1 align="center">🐋 Dev Stack</h1>
+<p align="center"><img src="https://www.docker.com/wp-content/uploads/2023/08/logo-guide-logos-1.svg" width="300" alt="Docker"></p>
+
 <h3 align="center">Cette configuration offre un environnement de développement avec plusieurs services incluant un serveur web, une base de données, Adminer pour la gestion de base de données, un outil de surveillance de serveur de messagerie (Mailpit), Portainer pour la gestion des conteneurs Docker, et Traefik pour le proxy inverse.</h3>
 
 ## Utilisation
@@ -24,6 +25,7 @@ Accédez aux services :
 - Mailpit : Surveillance de serveur de messagerie.
 - Portainer : Gestion Docker.
 - Traefik : Proxy inverse.
+- Watchtower : Mises à jour automatisées des conteneurs.
 
 ## Configuration
 

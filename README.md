@@ -1,4 +1,5 @@
-<h1 align="center">🐋 Dev Stack</h1>
+<p align="center"><img src="https://www.docker.com/wp-content/uploads/2023/08/logo-guide-logos-1.svg" width="300" alt="Docker"></p>
+
 <h3 align="center">This setup provides a development environment with multiple services including a web server, database, adminer, mail server monitoring tool, portainer, and Traefik for reverse proxy.</h3>
 
 ## Usage
@@ -14,8 +15,6 @@ Access services:
 - Mailpit: [http://mailpit.local](http://mailpit.local)
 - Portainer: [http://portainer.local](http://portainer.local)
 
-*Note: DNS configuration is required on your DNS server or in the hosts file to reach the services.*
-
 ## Services
 
 - Web: PHP-Nginx.
@@ -24,6 +23,9 @@ Access services:
 - Mailpit: Mail server monitoring.
 - Portainer: Docker management.
 - Traefik: Reverse proxy.
+- Watchtower: Automated container updates.
+
+*Note: DNS configuration is required on your DNS server or in the hosts file to reach the services.*
 
 ## Configuration
 
