@@ -15,6 +15,8 @@ Access services:
 - Mailpit: [http://mailpit.local](http://mailpit.local)
 - Portainer: [http://portainer.local](http://portainer.local)
 
+*Note: DNS configuration is required on your DNS server or in the hosts file to reach the services.*
+
 ## Services
 
 - Web: PHP-Nginx.
@@ -24,8 +26,6 @@ Access services:
 - Portainer: Docker management.
 - Traefik: Reverse proxy.
 - Watchtower: Automated container updates.
-
-*Note: DNS configuration is required on your DNS server or in the hosts file to reach the services.*
 
 ## Configuration
 
